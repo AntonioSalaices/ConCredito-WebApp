@@ -1,0 +1,55 @@
+<br>
+<br>
+<h3 class="text-center">Evaluación de prospectos</h3>
+<br>
+<br>
+<br>
+<form>
+  <div class="form-group"  style="width:80%;">
+        <label for="name">Filtro de búsqueda* </label>
+        <input  style="width:80%;" class="form-control mr-sm-2" type="search" placeholder="Ingresa lo que deseas buscar" aria-label="Search" (keyup)="filterArray($event)">
+  </div>
+</form>
+<br>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellido paterno</th>
+    <th scope="col">Apellido materno</th>
+    <th scope="col">Codigo Postal</th>
+    <th scope="col">Teléfono</th>
+    <th scope="col">RFC</th>
+    <th scope="col">Estatus</th>
+    <th scope="col">Modificar</th>
+    <th scope="col">Observaciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let prospecto of generateArray(arr)">
+    <td>{{prospecto.id}}</td>
+    <td>{{prospecto.name}}</td>
+    <td>{{prospecto.apellidop}}</td>
+    <td>{{prospecto.apellidom}}</td>
+    <td>{{prospecto.codigopostal}}</td>
+    <td>{{prospecto.telefono}}</td>
+    <td>{{prospecto.rfc}}</td>
+    <div *ngIf="prospecto.estatus =='E'">
+        <td><a class="btn btn-warning"> <fa-icon [icon]="faShare"></fa-icon></a></td>
+    </div>
+    <div *ngIf="prospecto.estatus =='A'">
+        <td><a class="btn btn-success"> <fa-icon [icon]="faCheck"></fa-icon></a></td>
+    </div>
+    <div *ngIf="prospecto.estatus =='R'">
+        <td><a class="btn btn-danger"> <fa-icon [icon]="faTimes"></fa-icon></a></td>
+    </div>
+    <td><a (click)="editar(prospecto.id)" class="btn btn-info"><fa-icon [icon]="faEdit"></fa-icon></a></td>
+    <td>{{prospecto.observacion}}</td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: circular-bold;
+    src: url(assets/font/CircularStd-Bold.otf) format("opentype");
+  }
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'circular-bold', 'arial', sans-serif;
+font-size: 20px;
+}
+body{
+  background-color:#eee;
+}
+
+
+

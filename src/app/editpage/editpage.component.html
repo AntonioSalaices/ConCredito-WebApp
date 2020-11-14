@@ -1,0 +1,83 @@
+<br>
+<br>
+<h3 class="text-center">Modificar prospecto</h3>
+<br>
+<br>
+<div class="shadow">
+        <div class="container">
+        <form #formProspecto="ngForm" [formGroup]="prospectoForm" (ngSubmit)="editar(prospectodetail.id, formProspecto)" class="col-lg-6 offset-lg-3 ">
+        <br>
+        <div class="row" style="margin-left: 10px" >
+            <label for="">ID: </label>  
+            <input id="address" value="{{prospectodetail.id}}" name="id" ngModel placeholder="{{prospectodetail.id}}" class="form-control" formControlName="id" type="text"  readonly>          
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Nombre:</label>
+                <input id="address" placeholder=" {{prospectodetail.name}}" class="form-control"  type="text"  readonly> 
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Apellido paterno: </label>
+                <input id="address" placeholder="{{prospectodetail.apellidop}}" class="form-control"  type="text"  readonly> 
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Apellido materno: </label>       
+                <input id="address" placeholder="{{prospectodetail.apellidom}}" class="form-control" type="text"  readonly>      
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Calle:</label>
+                <input id="address" placeholder=" {{prospectodetail.calle}}" class="form-control"  type="text" readonly> 
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Número: # </label>
+                <input id="address" placeholder="{{prospectodetail.numero}}" class="form-control"  type="text" readonly> 
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Colonia: </label>
+                <input id="address" placeholder="{{prospectodetail.colonia}}" class="form-control"  type="text"  readonly> 
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Código postal: </label>
+                <input id="address" placeholder="{{prospectodetail.codigopostal}}" class="form-control"  type="text"  readonly>             
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Teléfono: </label>
+                <input id="address" placeholder="{{prospectodetail.telefono}}" class="form-control"  type="text" readonly> 
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">RFC: </label>
+                <input id="address" placeholder="{{prospectodetail.rfc}}" class="form-control"  type="text"  readonly> 
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                <label for="">Estatus: </label>
+                <select class="custom-select" formControlName="estatus">
+                                <option [value]="null" selected>Selecciona el estatus del prospecto</option>
+                                <option *ngFor="let statu of status" [value]="statu.stat" >
+                                        {{statu.stat}}-{{statu.name}}
+                                </option>
+                </select>
+        </div>
+        <div class="row" style="margin-left: 10px" >
+                        <label for="">Documento: </label>
+                        <a style="margin-left: 10px" href="http://localhost:3000/{{prospectodetail.documento}}"><fa-icon [icon]="faFilePdf"></fa-icon></a>
+        </div>
+        <div *ngIf="prospectoForm.value.estatus =='R'" class="row" style="margin-left: 10px" >
+                <label for="">Observaciones: </label>
+                <input id="address" placeholder="{{prospectodetail.observacion}}" class="form-control"  formControlName="observacion" type="text"> 
+        </div>
+        <br>
+        <div class="row" style="margin-left: 10px" >
+                        <label for="">Fecha de registro: </label>
+                        <input id="address" placeholder="{{prospectodetail.createdAt | date:'medium'}}" class="form-control"  type="text"  readonly> 
+        </div>
+        <br>
+        <div class="row" style="margin-left: 10px" >
+            <button class="btn btn-success" type="submit" >Enviar <fa-icon [icon]="faCheck"></fa-icon></button>   
+            <a routerLink="/evaluacion" style="margin-left: 10px" class="btn btn-danger"> Regresar <fa-icon [icon]="faUndo"></fa-icon></a>
+        </div>
+        </form>
+        </div>
+</div>
+<br>
+<br>
+<br>
+<br>

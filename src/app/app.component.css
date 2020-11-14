@@ -1,0 +1,22 @@
+li{ 
+    border: 1px solid black;
+    background-color:#00ac68;
+    color: white;
+} /* CSS link color (red) */
+a{
+    color:black;
+}
+a:hover{
+    color:white;
+}
+li:hover { 
+    color: black;
+}
+
+a {   
+    color: white;   
+}
+
+/* a:active {
+    background-color: white;
+} */

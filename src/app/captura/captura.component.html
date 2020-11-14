@@ -1,0 +1,135 @@
+<br>
+<br>
+<h3 class="text-center">Captura de prospecto</h3>
+
+<div class="fluid-container">
+        <form  #formProspecto="ngForm" method="post" enctype="multipart/form-data" [formGroup]="prospectoForm" (ngSubmit)="insertar(formProspecto)" class="col-lg-6 offset-lg-3 " novalidate>
+            <div class="form-group">
+            <label for="name">Nombre* </label>
+            <input class="form-control"  id="name" name="name" ngModel type="text" formControlName="name">
+            </div>
+            <div *ngIf="prospectoForm.controls['name'].invalid && (prospectoForm.controls['name'].dirty || prospectoForm.controls['name'].touched)" class="alert alert-danger">
+                <div *ngIf="prospectoForm.controls['name'].errors.required">
+                        El nombre es requerido.
+                </div>
+            </div>
+        
+            <div class="form-group">
+            <label for="address">Apellido paterno*</label>
+            <input id="address" class="form-control" type="text" name="apellidop" ngModel formControlName="apellidop">
+            </div>
+            <div *ngIf="prospectoForm.controls['apellidop'].invalid && (prospectoForm.controls['apellidop'].dirty || prospectoForm.controls['apellidop'].touched)" class="alert alert-danger">
+                <div *ngIf="prospectoForm.controls['apellidop'].errors.required">
+                        El apellido paterno es requerido.
+                </div>
+           </div>
+
+            <div class="form-group" >
+                    <label for="address">Apellido materno</label>
+                    <input id="address" class="form-control" name="apellidom" ngModel type="text" formControlName="apellidom">
+            </div>
+
+            <div class="form-group" >
+                    <label for="address">Calle*</label>
+                    <input id="address" class="form-control" name="calle" ngModel type="text" formControlName="calle">
+            </div>
+            <div *ngIf="prospectoForm.controls['calle'].invalid && (prospectoForm.controls['calle'].dirty || prospectoForm.controls['calle'].touched)" class="alert alert-danger">
+                <div *ngIf="prospectoForm.controls['calle'].errors.required">
+                        La calle es requerida.
+                </div>
+           </div>
+
+            <div class="form-group" >
+                    <label for="address">Número*</label>
+                    <input id="address" class="form-control" name="numero" ngModel type="number" formControlName="numero">
+            </div>
+            <div *ngIf="prospectoForm.controls['numero'].invalid && (prospectoForm.controls['numero'].dirty || prospectoForm.controls['numero'].touched)" class="alert alert-danger">
+                <div *ngIf="prospectoForm.controls['numero'].errors.required">
+                        El número es requerido.
+                </div>
+            </div>
+
+            <div class="form-group" >
+                    <label for="address">Colonia*</label>
+                    <input id="address" class="form-control" name="colonia" ngModel type="text" formControlName="colonia">
+            </div>
+            <div *ngIf="prospectoForm.controls['colonia'].invalid && (prospectoForm.controls['colonia'].dirty || prospectoForm.controls['colonia'].touched)" class="alert alert-danger">
+                        <div *ngIf="prospectoForm.controls['colonia'].errors.required">
+                                La colonia es requerida.
+                        </div>
+            </div>
+            <div class="form-group" >
+                    <label for="address">Código postal*</label>
+                    <input id="address"  class="form-control" name="codigopostal" ngModel type="number" formControlName="codigopostal">
+            </div>
+            <div *ngIf="prospectoForm.controls['codigopostal'].invalid && (prospectoForm.controls['codigopostal'].dirty || prospectoForm.controls['codigopostal'].touched)" class="alert alert-danger">
+                <div *ngIf="prospectoForm.controls['codigopostal'].errors.required">
+                        El código postal es requerido.
+                </div>
+            </div>
+            
+
+            <div class="form-group" >
+                    <label for="address">Teléfono*</label>
+                    <input id="address" class="form-control" name="telefono" ngModel type="text" formControlName="telefono">
+            </div>
+            <div *ngIf="prospectoForm.controls['telefono'].invalid && (prospectoForm.controls['telefono'].dirty || prospectoForm.controls['telefono'].touched)" class="alert alert-danger">
+                <div *ngIf="prospectoForm.controls['telefono'].errors.required">
+                        El teléfono es requerido.
+                </div>
+                <div *ngIf="prospectoForm.controls['telefono'].errors.pattern">
+                                Formato de telefono no válido.
+                </div>
+           </div>
+
+            <div class="form-group" >
+                    <label for="address">RFC*</label>
+                    <input id="address" class="form-control" name="rfc" ngModel type="text" formControlName="rfc">
+            </div>
+            <div *ngIf="prospectoForm.controls['rfc'].invalid && (prospectoForm.controls['rfc'].dirty || prospectoForm.controls['rfc'].touched)" class="alert alert-danger">
+                <div *ngIf="prospectoForm.controls['rfc'].errors.required">
+                        El RFC es requerido.
+                </div>
+                <div *ngIf="prospectoForm.controls['rfc'].errors.pattern">
+                                Formato RFC no válido.
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                    <label for="exampleFormControlFile1">Documentos*</label>
+                    <input type="file" id="file" formControlName="documento" class="form-control-file" (change)="onFileChange($event)" name="documento" ngModel formControlName="documento" id="exampleFormControlFile1">
+            </div>
+            <div *ngIf="prospectoForm.controls['documento'].invalid && (prospectoForm.controls['documento'].dirty || prospectoForm.controls['documento'].touched)" class="alert alert-danger">
+                <div *ngIf="prospectoForm.controls['documento'].errors.required">
+                        El documento es requerido.
+                </div>
+            </div>
+
+            <br>
+            <button class="btn btn-success" type="submit" >Enviar <fa-icon [icon]="faCheck"></fa-icon></button>   
+            <button class="btn btn-danger" type="button" style="margin-left: 10px"(click)="openBackDropCustomClass(content, formProspecto)">Salir <fa-icon [icon]="faSignOutAlt"></fa-icon></button> 
+        </form>
+        <br>
+        <br>
+</div>
+
+<ng-template #content let-modal>
+<div class="modal-header" style="background-color: #00ac68;">
+        <h4 class="modal-title">¡Hola!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+</div>
+<div class="modal-body">
+        <p>¿Desea salir?</p>
+        <p>Perderá toda la información</p>
+</div>
+<div class="modal-footer">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">Cancelar</span>
+        </button>
+        <button type="button" class="btn btn-outline-dark" (click)="onClose()">Confirmar</button>
+</div>
+</ng-template>
+
