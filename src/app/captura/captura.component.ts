@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation, ViewChild  } from '@angular/core';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgForm }   from '@angular/forms';
 import { Router } from '@angular/router';
 import { faCheck, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { timer } from "rxjs";
 
 
 //Recursos mios
@@ -21,6 +22,7 @@ export class CapturaComponent {
 
   faCheck=faCheck;
   faSignOutAlt=faSignOutAlt;
+ 
 
   @ViewChild('formProspecto') public prospectoFormR:NgForm;
 
@@ -70,7 +72,7 @@ export class CapturaComponent {
     
     const formValue = this.prospectoForm.value;
     let formData  = new FormData();
-    
+  
     formData.append('name', formValue.name);
     formData.append('apellidop', formValue.apellidop);
     formData.append('apellidom', formValue.apellidom);
@@ -83,16 +85,19 @@ export class CapturaComponent {
     formData.append('documento',this.uploadedFiles, this.uploadedFiles.name);
     formData.append('observacion',' ');
     
-    this.prospectoService.createProspecto(formData)
+    this.prospectoService.createProspecto(formData)  
     .then((newProspecto) =>{
       console.log("Salio bien", newProspecto)
-
     },error => {
       console.log(error);
       console.log("Error:"+ error);
     } 
     );
-    this.router.navigate(['/listado']);
+    timer(3000)
+    .subscribe(i => { 
+      this.router.navigate(['/listado']); 
+    })
+    
 
   }
   get name(){

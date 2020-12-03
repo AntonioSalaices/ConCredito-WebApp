@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router ,ActivatedRoute, ParamMap  } from '@angular/router';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 import { faUndo, faCheck, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import { NgForm, FormGroup }   from '@angular/forms';
+import { timer } from "rxjs";
 
 //Recursos mios
 import {ProspectoService} from '../services/prospecto.service';
@@ -21,19 +22,36 @@ export class EditpageComponent implements OnInit {
   status:any[];
 
   prospectoForm: FormGroup;
+  formularioValido= null;
 
 
   createForm() {
   this.prospectoForm = this.fb.group({
     id: [''],
-    estatus: [''],
+    estatus: ['', Validators.required],
     observacion: [''],
   });
 }
   
   constructor(private prospectoService: ProspectoService, private fb: FormBuilder,private router: Router, private route: ActivatedRoute) {
     this.createForm();
+    this.setValidators();
    }
+   private setValidators(): void {
+    this.prospectoForm.get('estatus').valueChanges.subscribe(
+    (result) => {
+      if ( result ==='R') {
+        this.prospectoForm.get('observacion').setValidators(Validators.required);
+        console.log('validator enviado');
+      } else {
+        this.prospectoForm.get('observacion').setValidators(null);
+      }
+      this.prospectoForm.get('observacion').updateValueAndValidity();
+    }
+  );
+  }
+
+  
 
   id: number;
   ngOnInit(): void {
@@ -44,7 +62,7 @@ export class EditpageComponent implements OnInit {
     this.status = [
       {stat:"A", name:"Autorizado"},
       {stat:"R", name:"Rechazado"}
-    ]
+    ] 
   }
 
   getProspecto(id){
@@ -55,6 +73,11 @@ export class EditpageComponent implements OnInit {
     })
   }
   editar(id:any, prospectoForm: NgForm){
+    this.formularioValido = false;
+    if(this.prospectoForm.invalid){
+      return;
+    }
+    this.formularioValido=true;
     const formValue = this.prospectoForm.value;
     formValue.id = this.id;
     console.log(formValue);
@@ -66,7 +89,11 @@ export class EditpageComponent implements OnInit {
       console.log("Algo salio mal");
     } 
     );
-    this.router.navigate(['/evaluacion']);
+    timer(2000)
+    .subscribe(i => { 
+      this.router.navigate(['/evaluacion']); 
+    })
+    
 
   }
 }

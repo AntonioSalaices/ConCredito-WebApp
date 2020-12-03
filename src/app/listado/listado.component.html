@@ -28,7 +28,7 @@
     <td>{{prospecto.id}}</td>
     <td>{{prospecto.name}}</td>
     <td>{{prospecto.apellidop}}</td>
-    <td>{{prospecto.apellidom}}</td>
+    <td>{{prospecto.apellidom!}}</td>    
     <div *ngIf="prospecto.estatus =='E'">
         <td><a class="btn btn-warning"> <fa-icon [icon]="faShare"></fa-icon></a></td>
     </div>

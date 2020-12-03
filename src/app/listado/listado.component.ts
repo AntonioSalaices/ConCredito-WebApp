@@ -11,8 +11,6 @@ import {Prospecto} from '../interfaces/prospecto';
 
 
 
-
-// Karla Vanessa Espinoza Espinoza  karla_vanessa04@hotmail.com mañana 4:00pm
 @Component({
   selector: 'app-listado',
   templateUrl: './listado.component.html',
@@ -37,12 +35,12 @@ export class ListadoComponent implements OnInit {
 
   constructor(private prospectoService: ProspectoService,  private router: Router) { 
     
-    this.getAllProspectos();
     
     
   }
 
   ngOnInit(): void {
+    this.getAllProspectos();
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

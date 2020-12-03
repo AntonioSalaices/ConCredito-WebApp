@@ -98,7 +98,7 @@
 
             <div class="form-group">
                     <label for="exampleFormControlFile1">Documentos*</label>
-                    <input type="file" id="file" formControlName="documento" class="form-control-file" (change)="onFileChange($event)" name="documento" ngModel formControlName="documento" id="exampleFormControlFile1">
+                    <input type="file" id="file" accept="application/pdf" formControlName="documento" class="form-control-file" (change)="onFileChange($event)" name="documento" ngModel formControlName="documento" id="exampleFormControlFile1">
             </div>
             <div *ngIf="prospectoForm.controls['documento'].invalid && (prospectoForm.controls['documento'].dirty || prospectoForm.controls['documento'].touched)" class="alert alert-danger">
                 <div *ngIf="prospectoForm.controls['documento'].errors.required">
@@ -107,7 +107,7 @@
             </div>
 
             <br>
-            <button class="btn btn-success" type="submit" >Enviar <fa-icon [icon]="faCheck"></fa-icon></button>   
+            <button class="btn btn-success" type="submit" [disabled]="prospectoForm.invalid" >Enviar <fa-icon [icon]="faCheck"></fa-icon></button>   
             <button class="btn btn-danger" type="button" style="margin-left: 10px"(click)="openBackDropCustomClass(content, formProspecto)">Salir <fa-icon [icon]="faSignOutAlt"></fa-icon></button> 
         </form>
         <br>
@@ -116,7 +116,7 @@
 
 <ng-template #content let-modal>
 <div class="modal-header" style="background-color: #00ac68;">
-        <h4 class="modal-title">¡Hola!</h4>
+        <h4 class="modal-title" style="color:white;">¡Hola!</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
         </button>
